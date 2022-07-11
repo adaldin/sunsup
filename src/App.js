@@ -7,18 +7,22 @@ import Menu from "./components/menu/Menu.js";
 import Home from "./pages/home/Home.js";
 import Explore from "./pages/explore/Explore.js";
 import Profile from "./pages/profile/Profile.js";
+// Context
+import AuthProvider from "./context/authContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-        <Menu />
+        <AuthProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+          <Menu />
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
