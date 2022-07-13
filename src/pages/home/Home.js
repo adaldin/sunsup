@@ -1,4 +1,11 @@
+// React
+import { useNavigate } from "react-router-dom";
+// Bootstrap
+import Button from "react-bootstrap/Button";
+// Context
+import { useAuth } from "../../context/authContext";
+
 function Home() {
-  return <div style={{ heigth: "100vh" }}> page home</div>;
+  return <p>page home</p>;
 }
 export default Home;

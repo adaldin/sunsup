@@ -36,7 +36,7 @@ function Login() {
     setError("");
     try {
       await login(user.email, user.password);
-      navigate("/");
+      navigate("/profile/user");
     } catch (error) {
       console.log(error.message);
       setError("Correo inválido");

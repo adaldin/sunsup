@@ -5,6 +5,8 @@ import Header from "./components/header/Header";
 import Menu from "./components/menu/Menu.js";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import UserProfile from "./components/userProfile/UserProfile";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 // Pages
 import Home from "./pages/home/Home.js";
 import Explore from "./pages/explore/Explore.js";
@@ -24,6 +26,14 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/login" element={<Login />} />
             <Route path="/profile/register" element={<Register />} />
+            <Route
+              path="/profile/user"
+              element={
+                <ProtectedRoute>
+                  <UserProfile />{" "}
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Menu />
         </AuthProvider>
@@ -33,3 +43,15 @@ function App() {
 }
 
 export default App;
+// PAGES
+// PROFILE
+// Cambiar una vez logueado el cliente por sus datos
+
+// -------
+// COMPONENTES
+
+// LOGIN
+// gestionar error para alert
+
+// LOADING
+// Crearlo y reemplazar p de home y protected route
