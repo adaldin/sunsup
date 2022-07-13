@@ -24,6 +24,7 @@ function UserProfile() {
       ) : (
         <>
           <p>Welcome {user.email}</p>
+          <p>aquí creación de rutas form</p>
           <Button onClick={handleLogout}>Logout</Button>
         </>
       )}
