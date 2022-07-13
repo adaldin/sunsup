@@ -7,7 +7,6 @@ import keys from "../../keys";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const apiKey = process.env.REACT_APP_FIREBASE_KEY;
 // TODO ESTO DEBERIA IR A ENV
 const firebaseConfig = keys;
 

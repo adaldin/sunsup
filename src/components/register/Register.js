@@ -1,8 +1,11 @@
 // React
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // Bootstrap
 import Button from "react-bootstrap/Button";
+import { Alert } from "react-bootstrap";
+
 // Context
 import { useAuth } from "../../context/authContext.js";
 
@@ -14,8 +17,12 @@ function Register() {
     fName: "",
     lName: "",
   });
+  const [error, setError] = useState("");
+
   //******CONTEXT*/
+  // import contexto(fc signup para modificar)
   const { signUp } = useAuth();
+
   // HOOKS
   const navigate = useNavigate();
 
@@ -25,40 +32,72 @@ function Register() {
     setUser({ ...user, [name]: value });
   }
 
-  async function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setError("");
     try {
       await signUp(user.email, user.password);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
+      if (
+        error.code === "auth/email-already-in-use" ||
+        error.code === "auth/internal-error"
+      )
+        setError("Correo inválido");
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="d-flex flex-column p-2 gap-2">
-      {/* email */}
-      <label htmlFor="email">Email</label>
-      <input type="email" id="email" name="email" onChange={handleChange} />
-      {/* password */}
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        onChange={handleChange}
-      />
-      {/* name */}
-      <label htmlFor="fName">First name</label>
-      <input type="text" id="fName" name="fName" onChange={handleChange} />
-      {/* lastName */}
-      <label htmlFor="lName">Last name</label>
-      <input type="text" id="lName" name="lName" onChange={handleChange} />
-      {/* submit */}
-      <Button type="submit" variant="outline-dark">
-        Register
-      </Button>
-    </form>
+    <div>
+      {error && <Alert variant="danger">{error}</Alert>}
+      <form onSubmit={handleSubmit} className="d-flex flex-column p-2 gap-2">
+        {/* email */}
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          onChange={handleChange}
+          placeholder="user@mail.com"
+        />
+
+        {/* password */}
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          onChange={handleChange}
+          placeholder="******"
+        />
+        {/* name */}
+        <label htmlFor="fName">First name</label>
+        <input
+          type="text"
+          id="fName"
+          name="fName"
+          onChange={handleChange}
+          placeholder="Michael"
+        />
+        {/* lastName */}
+        <label htmlFor="lName">Last name</label>
+        <input
+          type="text"
+          id="lName"
+          name="lName"
+          onChange={handleChange}
+          placeholder="Scott"
+        />
+        {/* Sign Up */}
+        <div className="d-flex justify-content-center">
+          <Link to={"/profile/login"}>Alredy registered? Log in.</Link>
+        </div>
+        {/* submit */}
+        <Button type="submit" variant="outline-dark">
+          Register
+        </Button>
+      </form>
+    </div>
   );
 }
 export default Register;

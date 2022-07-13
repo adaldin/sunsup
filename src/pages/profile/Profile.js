@@ -1,9 +1,11 @@
 // Components
-import Register from "../../components/register/Register.js";
+// import Register from "../../components/register/Register.js";
+import Login from "../../components/login/Login.js";
 function Profile() {
   return (
     <div>
-      <Register />
+      <Login />
+      {/* <Register /> */}
     </div>
   );
 }
