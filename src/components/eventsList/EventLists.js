@@ -1,11 +1,8 @@
 // React
-import { useState, useEffect } from "react";
-// Firebase
-import { db } from "../firebase/firebase";
-import { collection, getDocs, query } from "firebase/firestore";
+
 function EventsList() {
   //******STATES*/
-  // const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([]);
 
   //******USE EFFECT*/
   useEffect(() => {
@@ -20,7 +17,7 @@ function EventsList() {
     querySnapshot.forEach((doc) => {
       let datosMolones = doc.data();
       console.log("eeee", datosMolones);
-      console.log(`${doc.id}: ${doc.data().description}`);
+      console.log(`${doc.id} => ${doc.data()}`);
       //   doc.data.value.mapValue.fields.description
     });
   }
