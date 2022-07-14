@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 // Bootstrap
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
@@ -25,16 +26,23 @@ function UserProfile() {
     console.log("crear evento");
   }
 
+  function handleDate(event) {
+    event.preventDefault();
+    console.log(event);
+  }
+
   return (
     <div style={{ heigth: "100vh" }}>
       {loading ? (
         <p>Loading</p>
       ) : (
         <Container fluid>
-          <div className="d-flex justify-content-center">
-            <p>Welcome {user.email}</p>
-            <Button onClick={handleLogout}>Logout</Button>
-          </div>
+          <Row className="justify-content-center">
+            <p className="text-center">Welcome {user.email}</p>
+            <Button variant="outline-dark" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Row>
 
           <Form onSubmit={handleEventCreation}>
             <h6>Create a new paddleboard trip</h6>
@@ -48,6 +56,16 @@ function UserProfile() {
                 placeholder="Très viles route"
               />
             </Form.Group>
+            {/* place */}
+            <Form.Group controlId="formBasicTripPlace">
+              <Form.Label>Starting Point</Form.Label>
+              <Form.Control
+                type="text"
+                name="location"
+                required
+                placeholder="Caldes d'Estrac"
+              />
+            </Form.Group>
             {/* date */}
             <Form.Group controlId="formBasicTripDate">
               <Form.Label>Select a date</Form.Label>
@@ -56,8 +74,15 @@ function UserProfile() {
                 name="date"
                 required
                 placeholder="08/08/2022"
+                onChange={handleDate}
               />
             </Form.Group>
+            {/* wheather */}
+            <p>Aquí current wheather en esa location en dia selecionado </p>
+            <p>
+              El día seleccionado debe ser no mayor a 5 días mas de dia de
+              creación
+            </p>
             {/* submit */}
             <div className="d-grid">
               <Button variant="secondary" type="submit">
