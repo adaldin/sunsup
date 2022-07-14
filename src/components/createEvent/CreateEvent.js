@@ -1,14 +1,25 @@
 // React
+
+// Bootstrap
+import Spinner from "react-bootstrap/Spinner";
 // Components
-import Map from "../map/Map";
 
 // Google-Maps
-import { useLoadScript } from "@react-google-maps/api";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+// Keys
+import { mapKey } from "../../keys";
 
 function CreateEvent() {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-  });
+  const render = (status) => {
+    switch (status) {
+      case Status.LOADING:
+        return <Spinner />;
+      case Status.FAILURE:
+        return <p>Error</p>;
+      case Status.SUCCESS:
+        return <p> map</p>;
+    }
+  };
   //******STATES*/
 
   //******HOOKS*/
@@ -16,8 +27,12 @@ function CreateEvent() {
   //******USE EFFECT*/
 
   //******LOGIC*/
-  if (!isLoaded) return <div>Loading...</div>;
-  return <Map />;
+
+  return (
+    <Wrapper apiKey={mapKey} render={render}>
+      <p>map</p>
+    </Wrapper>
+  );
 }
 export default CreateEvent;
 
