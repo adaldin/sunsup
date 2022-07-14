@@ -5,7 +5,7 @@ import { db } from "../firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 function EventsList() {
   //******STATES*/
-  //   const [events, setEvents] = useState([]);
+  // const [events, setEvents] = useState([]);
 
   //******USE EFFECT*/
   useEffect(() => {

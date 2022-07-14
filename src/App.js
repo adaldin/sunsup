@@ -52,6 +52,11 @@ export default App;
 
 // LOGIN
 // gestionar error para alert
+// local storage logueado
+
+// REGISTRO
+// gestionar error para alert
+// local storage logueado
 
 // LOADING
 // Crearlo y reemplazar p de home y protected route
