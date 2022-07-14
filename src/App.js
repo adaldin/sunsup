@@ -47,7 +47,9 @@ export default App;
 // PROFILE
 // Cambiar una vez logueado el cliente por sus datos  HECHO!!!
 
-// HOME
+// HOME/TODAY
+// Tomar ubicación de clientes.
+// Filtrar  array de eventos, los lugares que coinciden con ubicación de cliente
 // Renderizar listado de eventos
 
 // -------
@@ -58,3 +60,6 @@ export default App;
 
 // LOADING
 // Crearlo y reemplazar p de home y protected route
+
+// WEATHER
+// Componente que  se le pase por props la locación y qe traiga la data necesaria
