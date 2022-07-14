@@ -30,7 +30,7 @@ function App() {
               path="/profile/user"
               element={
                 <ProtectedRoute>
-                  <UserProfile />{" "}
+                  <UserProfile />
                 </ProtectedRoute>
               }
             />
@@ -45,7 +45,7 @@ function App() {
 export default App;
 // PAGES
 // PROFILE
-// Cambiar una vez logueado el cliente por sus datos
+// Cambiar una vez logueado el cliente por sus datos  HECHO!!!
 
 // -------
 // COMPONENTES
