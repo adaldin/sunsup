@@ -7,8 +7,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+// R-SUITE
+import DatePicker from "rsuite/DatePicker";
+import { DateRangePicker } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
 
 function UserProfile() {
+  const { beforeToday, dateFns } = DateRangePicker;
   //******STATES*/
 
   //******CONTEXT*/
@@ -26,10 +31,10 @@ function UserProfile() {
     console.log("crear evento");
   }
 
-  function handleDate(event) {
-    event.preventDefault();
-    console.log(event);
-  }
+  // function handleDate(event) {
+  //   event.preventDefault();
+  //   console.log(event);
+  // }
 
   return (
     <div style={{ heigth: "100vh" }}>
@@ -67,7 +72,11 @@ function UserProfile() {
               />
             </Form.Group>
             {/* date */}
-            <Form.Group controlId="formBasicTripDate">
+            <DatePicker
+              disabledDate={(date) => dateFns.isBefore(date, new Date())}
+              style={{ width: 200 }}
+            />
+            {/* <Form.Group controlId="formBasicTripDate">
               <Form.Label>Select a date</Form.Label>
               <Form.Control
                 type="date"
@@ -76,7 +85,7 @@ function UserProfile() {
                 placeholder="08/08/2022"
                 onChange={handleDate}
               />
-            </Form.Group>
+            </Form.Group> */}
             {/* wheather */}
             <p>Aquí current wheather en esa location en dia selecionado </p>
             <p>
