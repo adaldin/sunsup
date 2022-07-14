@@ -47,6 +47,9 @@ export default App;
 // PROFILE
 // Cambiar una vez logueado el cliente por sus datos  HECHO!!!
 
+// HOME
+// Renderizar listado de eventos
+
 // -------
 // COMPONENTES
 
