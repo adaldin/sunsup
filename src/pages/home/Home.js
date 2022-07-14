@@ -1,4 +1,6 @@
+// Components
+import EventsList from "../../components/eventsList/EventLists";
 function Home() {
-  return <p>page home</p>;
+  return <EventsList />;
 }
 export default Home;
