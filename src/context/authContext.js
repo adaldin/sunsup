@@ -26,18 +26,10 @@ export function AuthProvider({ children }) {
   // fc que paso por contexto para que quien lo tome venga por la fc a aquí
   async function signUp(email, password) {
     // aquí cuando tenga los parámetros llamo a firebase y su fc
-    const userCredentials = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    await createUserWithEmailAndPassword(auth, email, password);
   }
   async function login(email, password) {
-    const userCredentials = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    await signInWithEmailAndPassword(auth, email, password);
   }
 
   async function logout() {

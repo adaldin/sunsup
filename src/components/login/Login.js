@@ -16,7 +16,6 @@ function Login() {
     lName: "",
   });
   const [error, setError] = useState("");
-  const [signUp, setSignUp] = useState(false);
 
   //******CONTEXT*/
   // import contexto(fc signup para modificar)
