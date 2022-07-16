@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 // Bootstrap
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Spinner from "react-bootstrap/Spinner";
 // Components
 import MapContainer from "../mapContainer/MapContainer";
 // Google-Maps
@@ -27,7 +28,7 @@ function CreateEvent() {
     libraries: ["places"],
   });
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <Spinner animation="border" />;
   }
 
   return (
