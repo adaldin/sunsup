@@ -1,12 +1,15 @@
 import "../../global.css";
 // React
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 // Google-maps
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
+// Context
+import LocationContext from "../../context/locationContext";
 
-function MapContainer() {
+function MapContainer(props) {
+  //******CONTEXT*/
+  const { locations, setLocations } = useContext(LocationContext);
   //******STATES*/
-  const [locations, setLocations] = useState([]);
   const [currentLoc, setCurrentLoc] = useState({
     lat: 41.38505,
     lng: 2.17331,
@@ -44,7 +47,6 @@ function MapContainer() {
   }
 
   function displayMarkers() {
-    console.log(locations);
     if (locations.length > 0) {
       let newMarker = locations.map((location, i) => (
         <MarkerF

@@ -1,5 +1,5 @@
 // React
-import { useState } from "react";
+import { useContext, useState } from "react";
 // Bootstrap
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -9,11 +9,14 @@ import MapContainer from "../mapContainer/MapContainer";
 import { useLoadScript } from "@react-google-maps/api";
 // Keys
 import { mapKey } from "../../keys";
+// Context
+import LocationContext from "../../context/locationContext";
 
 function CreateEvent() {
+  const { locations, setLocations } = useContext(LocationContext);
+  console.log(locations);
   //******STATES*/
   const [show, setShow] = useState(false);
-
   //******LOGIC*/
   // modal
   const handleClose = () => setShow(false);

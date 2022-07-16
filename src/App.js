@@ -1,5 +1,6 @@
 // React
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useMemo, useState } from "react";
 // Components
 import Header from "./components/header/Header";
 import Menu from "./components/menu/Menu.js";
@@ -13,30 +14,37 @@ import Explore from "./pages/explore/Explore.js";
 import Profile from "./pages/profile/Profile.js";
 // Context
 import AuthProvider from "./context/authContext";
+import LocationContext from "./context/locationContext";
 
 function App() {
+  //******STATES/
+  const [locations, setLocations] = useState([]);
+  //******CONTEXT/
+  const value = useMemo(() => ({ locations, setLocations }), [locations]);
   return (
     <>
       <BrowserRouter>
-        <AuthProvider>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/login" element={<Login />} />
-            <Route path="/profile/register" element={<Register />} />
-            <Route
-              path="/profile/user"
-              element={
-                <ProtectedRoute>
-                  <UserProfile />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-          <Menu />
-        </AuthProvider>
+        <LocationContext.Provider value={value}>
+          <AuthProvider>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/login" element={<Login />} />
+              <Route path="/profile/register" element={<Register />} />
+              <Route
+                path="/profile/user"
+                element={
+                  <ProtectedRoute>
+                    <UserProfile />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+            <Menu />
+          </AuthProvider>
+        </LocationContext.Provider>
       </BrowserRouter>
     </>
   );
