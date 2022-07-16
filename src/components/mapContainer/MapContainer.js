@@ -2,12 +2,7 @@ import "../../global.css";
 // React
 import { useEffect, useState } from "react";
 // Google-maps
-import {
-  DirectionsService,
-  DirectionsRenderer,
-  GoogleMap,
-  MarkerF,
-} from "@react-google-maps/api";
+import { GoogleMap, MarkerF } from "@react-google-maps/api";
 
 function MapContainer() {
   //******STATES*/
@@ -24,7 +19,7 @@ function MapContainer() {
   }, []);
 
   useEffect(() => {
-    displayMarkers();
+    displayMarkers(); // eslint-disable-next-line
   }, [locations]);
 
   //******LOGIC*/
@@ -44,7 +39,7 @@ function MapContainer() {
       let latLong = { lat: event.latLng.lat(), lng: event.latLng.lng() };
       setLocations((preLocation) => [...preLocation, latLong]);
     } else {
-      alert("You only need to mark the entry and exit point");
+      alert("You just need 2 markers: starting and ending point");
     }
   }
 
