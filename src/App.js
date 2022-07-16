@@ -63,3 +63,6 @@ export default App;
 
 // WEATHER
 // Componente que  se le pase por props la locación y qe traiga la data necesaria
+
+// MAPCONTAINER
+// erase markers(sólo uno se borra)

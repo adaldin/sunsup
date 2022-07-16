@@ -1,14 +1,12 @@
 // React
-
-// Bootstrap
 import { useState } from "react";
-import { Button } from "react-bootstrap";
-import Spinner from "react-bootstrap/Spinner";
+// Bootstrap
+import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 // Components
-
+import MapContainer from "../mapContainer/MapContainer";
 // Google-Maps
-
+import { useLoadScript } from "@react-google-maps/api";
 // Keys
 import { mapKey } from "../../keys";
 
@@ -17,24 +15,36 @@ function CreateEvent() {
   const [show, setShow] = useState(false);
 
   //******LOGIC*/
+  // modal
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // map
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: mapKey,
+    libraries: ["places"],
+  });
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <p className="text-center">Create an event</p>
       <Button variant="outline-dark" onClick={handleShow}>
         +
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} className="modal--container">
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Create your trip</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body className="p-0">
+          <MapContainer className="map--position__container" />
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="outline-dark" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="outline-dark" onClick={handleClose}>
             Save Changes
           </Button>
         </Modal.Footer>
