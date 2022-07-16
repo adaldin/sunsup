@@ -1,0 +1,36 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "EVENT_ID": 0,
+          "EVENT_NAME": "Ruta de Caldetes a Arenys",
+          "DESCRIPTION": "Sortida des de la platja de los tres micos fins al port de Arenys",
+          "ATENDEES": []
+        },
+        "geometry": {
+          "type": "Point",
+          "startingCoordinates": [41.569462,2.526320],
+          "endingCoordinates": [41.579441,2.551480]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "EVENT_ID": 1,
+          "EVENT_NAME": "Ruta d'Arenys a Canet",
+          "DESCRIPTION": "Sortida del port de Arenys, fent stop els bunkers i continuant fins arribar a Canet",
+          "ATENDEES": []
+        },
+        "geometry": {
+          "type": "Point",
+          "startingCoordinates": [41.579441,2.551480],
+          "endingCoordinates": [41.588970,2.581920]
+        }
+      }
+
+
+
+    ]
+  }

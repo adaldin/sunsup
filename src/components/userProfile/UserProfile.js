@@ -8,6 +8,7 @@ import CreateEvent from "../createEvent/CreateEvent";
 // Bootstrap
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 function UserProfile() {
@@ -30,13 +31,20 @@ function UserProfile() {
         <p>Loading</p>
       ) : (
         <Container fluid>
-          <Row className="justify-content-center">
-            <p className="text-center">Welcome {user.email}</p>
-            <Button variant="outline-dark" onClick={handleLogout}>
+          <Row className="justify-content-center align-items-baseline">
+            <Col className="text-start" xs={8}>
+              Welcome {user.email}
+            </Col>
+            <Col
+              as={Button}
+              xs={4}
+              variant="outline-dark"
+              onClick={handleLogout}
+            >
               Logout
-            </Button>
+            </Col>
           </Row>
-          <Row>
+          <Row className="justify-content-center">
             <CreateEvent />
           </Row>
         </Container>

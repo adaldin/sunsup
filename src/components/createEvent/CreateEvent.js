@@ -1,37 +1,45 @@
 // React
 
 // Bootstrap
+import { useState } from "react";
+import { Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
+import Modal from "react-bootstrap/Modal";
 // Components
 
 // Google-Maps
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+
 // Keys
 import { mapKey } from "../../keys";
 
 function CreateEvent() {
-  const render = (status) => {
-    switch (status) {
-      case Status.LOADING:
-        return <Spinner />;
-      case Status.FAILURE:
-        return <p>Error</p>;
-      case Status.SUCCESS:
-        return <p> map</p>;
-    }
-  };
   //******STATES*/
-
-  //******HOOKS*/
-
-  //******USE EFFECT*/
+  const [show, setShow] = useState(false);
 
   //******LOGIC*/
-
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
-    <Wrapper apiKey={mapKey} render={render}>
-      <p>map</p>
-    </Wrapper>
+    <>
+      <p className="text-center">Create an event</p>
+      <Button variant="outline-dark" onClick={handleShow}>
+        +
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
 export default CreateEvent;
