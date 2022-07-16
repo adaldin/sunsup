@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import Spinner from "react-bootstrap/Spinner";
 // Components
 import MapContainer from "../mapContainer/MapContainer";
+import FormCreateEvent from "../formCreateEvent/FormCreateEvent";
 // Google-Maps
 import { useLoadScript } from "@react-google-maps/api";
 // Keys
@@ -39,17 +40,15 @@ function CreateEvent() {
       </Button>
       <Modal show={show} onHide={handleClose} className="modal--container">
         <Modal.Header closeButton>
-          <Modal.Title>Create your trip</Modal.Title>
+          <Modal.Title>Create a new trip</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">
           <MapContainer className="map--position__container" />
+          <FormCreateEvent />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-dark" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="outline-dark" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
