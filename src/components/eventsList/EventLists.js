@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 // Firebase
 import { db } from "../firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
+// Keys
+import { mapKey } from "../../keys";
 
 function EventsList() {
   //******STATES*/
@@ -53,7 +55,7 @@ function EventsList() {
   }
   // AQUI GET ADDRESSES
   // async function getAdress() {}
-  // https://maps.googleapis.com/maps/api/geocode/json?latlng=AQUI_LAT,AQUI_LONG&key=AIzaSyASKr_H6GBMBGD-Pzi5X33-xE83VOcAmNs
+  // `https://maps.googleapis.com/maps/api/geocode/json?latlng=AQUI_LAT,AQUI_LONG&key=${mapKey}`
 
   // function displayData() {
   //   const showData = events.map((event, i) => (
