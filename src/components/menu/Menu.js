@@ -8,32 +8,36 @@ function Menu() {
       fill
       variant="tabs"
       defaultActiveKey="/"
-      fixed="bottom"
-      className="menu--container"
+      className="menu--container fixed-bottom"
     >
       <Nav.Item>
-        <Nav.Link as={Link} to="/" className="menu--link">
-          Today
+        <Nav.Link as={Link} to="/" className="menu--link d-flex flex-column">
+          <i className="bi bi-water"></i>
+          <small className="m-0">Today</small>
         </Nav.Link>
       </Nav.Item>
+      <div className="vr"></div>
       <Nav.Item>
         <Nav.Link
           as={Link}
           to="/explore"
           eventKey="explore"
-          className="menu--link"
+          className="menu--link d-flex flex-column"
         >
-          Explore
+          <i className="bi bi-search"></i>
+          <small className="m-0">Explore</small>
         </Nav.Link>
       </Nav.Item>
+      <div className="vr"></div>
       <Nav.Item>
         <Nav.Link
           as={Link}
           to="/profile"
           eventKey="profile"
-          className="menu--link"
+          className="menu--link d-flex flex-column"
         >
-          Profile
+          <i className="bi bi-person-circle"></i>
+          <small className="m-0">Profile</small>
         </Nav.Link>
       </Nav.Item>
     </Nav>

@@ -72,3 +72,5 @@ export default App;
 // MapContainer: Form over should be over
 //CreateEvent/FormCreateEvent: Loader spiner está en el más y no en un div
 // Menu: fixed bottom
+// Menu: Remove lines
+// Header:remove Search input
