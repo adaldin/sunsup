@@ -1,5 +1,5 @@
 // Components
-import EventsList from "../../components/eventsList/EventLists";
+import EventsList from "../../components/events/EventLists";
 function Home() {
   return <EventsList />;
 }

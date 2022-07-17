@@ -71,8 +71,14 @@ function MapContainer(props) {
 
   return (
     <GoogleMap
-      zoom={10}
+      zoom={13}
       center={currentLoc}
+      options={{
+        mapTypeControl: false,
+        fullscreenControl: false,
+        streetViewControl: true,
+        controlSize: 20,
+      }}
       mapContainerClassName="map--size___container"
       onClick={handleClick}
     >

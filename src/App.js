@@ -71,3 +71,4 @@ export default App;
 // Drag n drom drawer over map
 // MapContainer: Form over should be over
 //CreateEvent/FormCreateEvent: Loader spiner está en el más y no en un div
+// Menu: fixed bottom

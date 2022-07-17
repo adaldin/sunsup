@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 // Keys
-import { mapKey } from "../../keys";
+import { geocodingKey } from "../../config.js";
+// Componets
+import EventItem from "./EventItem";
 
 function EventsList() {
   //******STATES*/
@@ -14,6 +16,7 @@ function EventsList() {
   //******USE EFFECT*/
   useEffect(() => {
     getData();
+    getAdress();
     // displayData(); // eslint-disable-next-line
   }, []);
 
@@ -54,19 +57,29 @@ function EventsList() {
     });
   }
   // AQUI GET ADDRESSES
-  // async function getAdress() {}
-  // `https://maps.googleapis.com/maps/api/geocode/json?latlng=AQUI_LAT,AQUI_LONG&key=${mapKey}`
+  async function getAdress() {
+    const r = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=41.38505,2.17331&key=${geocodingKey}`
+    );
+    const d = await r.json();
+    const addreses = d.formatted_address;
+  }
 
   // function displayData() {
+  //   console.log(events);
   //   const showData = events.map((event, i) => (
-  //     <p key={i}>{event.properties.eventName}</p>
+  //     <EventItem key={i} events={event}>
+  //       {event.properties.eventName}
+  //     </EventItem>
   //   ));
   //   setEventsUI(showData);
   // }
   return (
-    <>
-      <p>aquí listado eventos</p>
-    </>
+    <div className="d-flex flex-column gap-2 p-2">
+      {events.map((event, i) =>
+        event !== null ? <EventItem key={i} event={event} /> : ""
+      )}
+    </div>
   );
 }
 export default EventsList;
