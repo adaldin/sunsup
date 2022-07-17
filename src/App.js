@@ -57,6 +57,7 @@ export default App;
 // Protected routes agrega una ruta. User debería tomar /profile cuando está logueado
 // FormCreateEvent:Atendees tiene que tomar current email, ir a db, buscar email, y traer user.fName
 // MapContainer: erase markers(sólo uno se borra) HECHO!!!
+// MapContainer:Markers creation, convert locations to addresess and send it to gral context.
 // MapContainer: Remove Map controls.
 // Login: gestionar mensaje de error para alert
 // Login: gestionar la carga del usuario cuando está leyendo el contexto por un loading y set time out
@@ -64,6 +65,7 @@ export default App;
 // Today(pages):a cada evento recibido de db, le debe agregar fetch a openWeather con current weather
 // Today(pages):useParams para abrir evento id
 // Today(pages): en detail de evento(id) cargar windy
+//
 
 // ui
 // Drag n drom drawer over map

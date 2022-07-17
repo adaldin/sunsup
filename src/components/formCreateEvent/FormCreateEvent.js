@@ -59,6 +59,7 @@ function FormCreateEvent() {
 
   function handleEventCreation() {
     console.log("crear evento");
+    // Aquí send to database events? o context events?
   }
 
   return (
