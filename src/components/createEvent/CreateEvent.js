@@ -9,7 +9,7 @@ import Spinner from "react-bootstrap/Spinner";
 import MapContainer from "../mapContainer/MapContainer";
 import FormCreateEvent from "../formCreateEvent/FormCreateEvent";
 // Google-Maps
-import { useLoadScript } from "@react-google-maps/api";
+import { useJsApiLoader } from "@react-google-maps/api";
 // Keys
 import { mapKey } from "../../keys";
 
@@ -21,7 +21,7 @@ function CreateEvent() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   // map
-  const { isLoaded } = useLoadScript({
+  const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: mapKey,
     libraries: ["places"],
   });

@@ -1,19 +1,46 @@
+// React
+import { useState } from "react";
 // Bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
+// Context
+import { useAuth } from "../../context/authContext.js";
 
 function FormCreateEvent() {
-  // aquí
   //******STATES*/
+  const [formData, setFormData] = useState({
+    eventName: "",
+    sPoint: "",
+    ePoint: "",
+    eventDate: "",
+    eventTime: "",
+    eventDescription: "",
+    atendees: [],
+  });
+  //******CONTEXT*/
+  const { user } = useAuth();
+
+  //******LOGIC*/
+
+  function handleFormData(e) {
+    const { name, value } = e.target;
+    const atendees = [user.email];
+    console.log(atendees);
+
+    setFormData((prevData) => {
+      return {
+        ...prevData,
+        [name]: value,
+        atendees: atendees,
+      };
+    });
+  }
+
   function handleEventCreation() {
     console.log("crear evento");
-  }
-  function handleDate(event) {
-    event.preventDefault();
-    console.log(event.target.value);
   }
 
   return (
@@ -34,26 +61,31 @@ function FormCreateEvent() {
                   name="eventName"
                   required
                   placeholder="Très viles route"
+                  onChange={handleFormData}
                 />
               </Form.Group>
 
               <Form.Group as={Col} xs={6} controlId="formBasicTripPlace">
                 <Form.Label>Starting Point</Form.Label>
+                {/* AQUI GEOCODING TRANSFORMING LAT LNG TI INPUT.VALUE ADDRESS */}
                 <Form.Control
                   type="text"
                   name="sPoint"
                   required
                   placeholder="Caldes d'Estrac"
+                  onChange={handleFormData}
                 />
               </Form.Group>
 
               <Form.Group as={Col} xs={6} controlId="formBasicTripPlace">
                 <Form.Label>Exit Point</Form.Label>
+                {/* AQUI GEOCODING TRANSFORMING LAT LNG TI INPUT.VALUE ADDRESS */}
                 <Form.Control
                   type="text"
                   name="ePoint"
                   required
                   placeholder="Arenys de Mar"
+                  onChange={handleFormData}
                 />
               </Form.Group>
 
@@ -61,20 +93,20 @@ function FormCreateEvent() {
                 <Form.Label>Select a date</Form.Label>
                 <Form.Control
                   type="date"
-                  name="date"
+                  name="eventDate"
                   required
                   placeholder="08/08/2022"
-                  onChange={handleDate}
+                  onChange={handleFormData}
                 />
               </Form.Group>
               <Form.Group as={Col} xs={6} controlId="formBasicTripDate">
                 <Form.Label>Select a time</Form.Label>
                 <Form.Control
                   type="time"
-                  name="time"
+                  name="eventTime"
                   required
                   placeholder="07:00"
-                  onChange={handleDate}
+                  onChange={handleFormData}
                 />
               </Form.Group>
               <Form.Group as={Col} xs={12} controlId="formBasicTripDate">
@@ -82,9 +114,10 @@ function FormCreateEvent() {
                 <Form.Control
                   as="textarea"
                   rows={2}
-                  name="description"
+                  name="eventDescription"
                   placeholder="Entering to the water close to the beacons system, turning to the left on the rocks system an moving foward until we reach Areny's Port"
                   required
+                  onChange={handleFormData}
                 />
               </Form.Group>
 

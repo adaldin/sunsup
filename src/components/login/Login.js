@@ -18,7 +18,6 @@ function Login() {
   const [error, setError] = useState("");
 
   //******CONTEXT*/
-  // import contexto(fc signup para modificar)
   const { login } = useAuth();
 
   // HOOKS
