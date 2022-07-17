@@ -1,5 +1,5 @@
 // React
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 // Bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,6 +8,10 @@ import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
 // Context
 import { useAuth } from "../../context/authContext.js";
+
+//Firestore
+import { db } from "../firebase/firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 function FormCreateEvent() {
   //******STATES*/
@@ -22,13 +26,27 @@ function FormCreateEvent() {
   });
   //******CONTEXT*/
   const { user } = useAuth();
+  // aquí traer locations/sPoint ePoint context
+
+  //******USEEFFECT*/
+  useEffect(() => {
+    getUserName(); // eslint-disable-next-line
+  }, [user]);
 
   //******LOGIC*/
+  async function getUserName() {
+    const usersRef = collection(db, "users");
+    // Create a query against the collection.
+    const q = query(usersRef, where("email", "==", user.email));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
+  }
 
   function handleFormData(e) {
     const { name, value } = e.target;
     const atendees = [user.email];
-    console.log(atendees);
 
     setFormData((prevData) => {
       return {

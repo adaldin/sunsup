@@ -51,26 +51,21 @@ function App() {
 }
 
 export default App;
-// PAGES
-// PROFILE
-// Cambiar una vez logueado el cliente por sus datos  HECHO!!!
 
-// HOME/TODAY
-// Tomar ubicación de clientes.
-// Filtrar  array de eventos, los lugares que coinciden con ubicación de cliente
-// Renderizar listado de eventos
+// PROBLEMAS
+// funcionalidades
+// Protected routes agrega una ruta. User debería tomar /profile cuando está logueado
+// FormCreateEvent:Atendees tiene que tomar current email, ir a db, buscar email, y traer user.fName
+// MapContainer: erase markers(sólo uno se borra) HECHO!!!
+// MapContainer: Remove Map controls.
+// Login: gestionar mensaje de error para alert
+// Login: gestionar la carga del usuario cuando está leyendo el contexto por un loading y set time out
+// Today(pages): debe tomar ubicación de cliente,y mapear db con docs con eventDate de hoy cerca de sus coordenadas
+// Today(pages):a cada evento recibido de db, le debe agregar fetch a openWeather con current weather
+// Today(pages):useParams para abrir evento id
+// Today(pages): en detail de evento(id) cargar windy
 
-// -------
-// COMPONENTES
-
-// LOGIN
-// gestionar error para alert
-
-// LOADING
-// Crearlo y reemplazar p de home y protected route
-
-// WEATHER
-// Componente que  se le pase por props la locación y qe traiga la data necesaria
-
-// MAPCONTAINER
-// erase markers(sólo uno se borra)
+// ui
+// Drag n drom drawer over map
+// MapContainer: Form over should be over
+//CreateEvent/FormCreateEvent: Loader spiner está en el más y no en un div
