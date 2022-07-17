@@ -12,8 +12,6 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 function UserProfile() {
-  //******STATES*/
-
   //******CONTEXT*/
   const { user, logout, loading } = useAuth();
   //******HOOKS*/
@@ -45,7 +43,9 @@ function UserProfile() {
             </Col>
           </Row>
           <Row className="justify-content-center">
-            <CreateEvent />
+            <Col xs={12} className="jusify-content-center">
+              <CreateEvent />
+            </Col>
           </Row>
         </Container>
       )}

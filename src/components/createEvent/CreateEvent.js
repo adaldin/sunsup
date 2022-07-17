@@ -1,9 +1,10 @@
 // React
-import { useContext, useState } from "react";
+import { useState } from "react";
 // Bootstrap
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Spinner from "react-bootstrap/Spinner";
+
 // Components
 import MapContainer from "../mapContainer/MapContainer";
 import FormCreateEvent from "../formCreateEvent/FormCreateEvent";
@@ -11,12 +12,8 @@ import FormCreateEvent from "../formCreateEvent/FormCreateEvent";
 import { useLoadScript } from "@react-google-maps/api";
 // Keys
 import { mapKey } from "../../keys";
-// Context
-import LocationContext from "../../context/locationContext";
 
 function CreateEvent() {
-  const { locations, setLocations } = useContext(LocationContext);
-  console.log(locations);
   //******STATES*/
   const [show, setShow] = useState(false);
   //******LOGIC*/
@@ -34,23 +31,23 @@ function CreateEvent() {
 
   return (
     <>
-      <p className="text-center">Create an event</p>
-      <Button variant="outline-dark" onClick={handleShow}>
-        +
-      </Button>
+      <div>
+        <Button
+          variant="dark"
+          onClick={handleShow}
+          className="rounded-circle shadow fw-bold"
+        >
+          +
+        </Button>
+      </div>
       <Modal show={show} onHide={handleClose} className="modal--container">
         <Modal.Header closeButton>
-          <Modal.Title>Create a new trip</Modal.Title>
+          <Modal.Title>Mark entry and exit point</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">
           <MapContainer className="map--position__container" />
           <FormCreateEvent />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="outline-dark" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

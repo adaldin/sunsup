@@ -9,6 +9,10 @@ import { Alert } from "react-bootstrap";
 // Context
 import { useAuth } from "../../context/authContext.js";
 
+//Firestore
+import { db } from "../firebase/firebase";
+import { collection, addDoc } from "firebase/firestore";
+
 function Register() {
   //******STATES*/
   const [user, setUser] = useState({
@@ -38,6 +42,16 @@ function Register() {
     try {
       await signUp(user.email, user.password);
       navigate("/");
+
+      // Add a new document with a generated id.
+      const docRef = await addDoc(collection(db, "users"), {
+        email: user.email,
+        fname: user.fName,
+        lName: user.lName,
+        password: user.password,
+        timeStamp: new Date(),
+      });
+      console.log("Document written with ID: ", docRef.id);
     } catch (error) {
       if (
         error.code === "auth/email-already-in-use" ||
