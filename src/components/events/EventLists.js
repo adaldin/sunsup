@@ -1,5 +1,5 @@
 // React
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // Firebase
 import { db } from "../firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
@@ -7,11 +7,13 @@ import { collection, getDocs, query } from "firebase/firestore";
 import { geocodingKey } from "../../config.js";
 // Componets
 import EventItem from "./EventItem";
+// Context
+import EventsContext from "../../context/eventsContext";
 
 function EventsList() {
+  //******CONTEXT*/
+  const { events, setEvents } = useContext(EventsContext);
   //******STATES*/
-  const [events, setEvents] = useState([]);
-  // const [eventsUI, setEventsUI] = useState("");
 
   //******USE EFFECT*/
   useEffect(() => {
@@ -65,15 +67,6 @@ function EventsList() {
     const addreses = d.formatted_address;
   }
 
-  // function displayData() {
-  //   console.log(events);
-  //   const showData = events.map((event, i) => (
-  //     <EventItem key={i} events={event}>
-  //       {event.properties.eventName}
-  //     </EventItem>
-  //   ));
-  //   setEventsUI(showData);
-  // }
   return (
     <div className="d-flex flex-column gap-2 p-2">
       {events.map((event, i) =>

@@ -11,8 +11,12 @@ function Menu() {
       className="menu--container fixed-bottom"
     >
       <Nav.Item>
-        <Nav.Link as={Link} to="/" className="menu--link d-flex flex-column">
-          <i className="bi bi-water"></i>
+        <Nav.Link
+          as={Link}
+          to="/"
+          className="menu--link d-flex flex-column text-dark"
+        >
+          <i className="bi bi-water text-primary"></i>
           <small className="m-0">Today</small>
         </Nav.Link>
       </Nav.Item>
@@ -22,9 +26,9 @@ function Menu() {
           as={Link}
           to="/explore"
           eventKey="explore"
-          className="menu--link d-flex flex-column"
+          className="menu--link d-flex flex-column text-dark"
         >
-          <i className="bi bi-search"></i>
+          <i className="bi bi-search text-primary"></i>
           <small className="m-0">Explore</small>
         </Nav.Link>
       </Nav.Item>
@@ -34,9 +38,9 @@ function Menu() {
           as={Link}
           to="/profile"
           eventKey="profile"
-          className="menu--link d-flex flex-column"
+          className="menu--link d-flex flex-column text-dark"
         >
-          <i className="bi bi-person-circle"></i>
+          <i className="bi bi-person-circle text-primary"></i>
           <small className="m-0">Profile</small>
         </Nav.Link>
       </Nav.Item>

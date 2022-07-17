@@ -12,39 +12,46 @@ import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import Home from "./pages/home/Home.js";
 import Explore from "./pages/explore/Explore.js";
 import Profile from "./pages/profile/Profile.js";
+import Eventdetail from "./components/events/EventDetail";
 // Context
 import AuthProvider from "./context/authContext";
 import LocationContext from "./context/locationContext";
+import EventsContext from "./context/eventsContext";
 
 function App() {
   //******STATES/
   const [locations, setLocations] = useState([]);
+  const [events, setEvents] = useState([]);
   //******CONTEXT/
   const value = useMemo(() => ({ locations, setLocations }), [locations]);
+  const valueEvents = useMemo(() => ({ events, setEvents }), [events]);
   return (
     <>
       <BrowserRouter>
-        <LocationContext.Provider value={value}>
-          <AuthProvider>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/explore" element={<Explore />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/profile/login" element={<Login />} />
-              <Route path="/profile/register" element={<Register />} />
-              <Route
-                path="/profile/user"
-                element={
-                  <ProtectedRoute>
-                    <UserProfile />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-            <Menu />
-          </AuthProvider>
-        </LocationContext.Provider>
+        <EventsContext.Provider value={valueEvents}>
+          <LocationContext.Provider value={value}>
+            <AuthProvider>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/:id" element={<Eventdetail />} />
+                <Route path="/explore" element={<Explore />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/login" element={<Login />} />
+                <Route path="/profile/register" element={<Register />} />
+                <Route
+                  path="/profile/user"
+                  element={
+                    <ProtectedRoute>
+                      <UserProfile />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+              <Menu />
+            </AuthProvider>
+          </LocationContext.Provider>
+        </EventsContext.Provider>
       </BrowserRouter>
     </>
   );
@@ -74,3 +81,4 @@ export default App;
 // Menu: fixed bottom
 // Menu: Remove lines
 // Header:remove Search input
+// menu: links color
