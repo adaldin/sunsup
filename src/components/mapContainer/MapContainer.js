@@ -29,6 +29,7 @@ function MapContainer(props) {
   function getCurrentPosition() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
         setCurrentLoc({
           lat: position.coords.latitude,
           lng: position.coords.longitude,

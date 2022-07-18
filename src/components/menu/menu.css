@@ -3,8 +3,27 @@
         margin-bottom: -1px;
     background-color: white ;
     border: none;
-    border-top-left-radius: none;
-   border-top-right-radius:none;
+    border-top-left-radius: none !important;
+   border-top-right-radius:none !important;
+}
+.nav-fill .nav-item .nav-link{
+    margin-bottom: -1px;
+    background: 0 0;
+    border: none !important;
+    border-top-left-radius: none !important;
+    border-top-right-radius:none !important;
+}
+.nav-tabs .nav-link {
+    margin-bottom: -1px;
+ background: 0 0; 
+    border: none !important;
+    border-top-left-radius: none !important; 
+ border-top-right-radius: none !important;
+}
+.nav-tabs .nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color:none !important;
 }
  /* .menu--container{
     border: none;

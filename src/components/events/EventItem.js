@@ -16,15 +16,18 @@ function EventItem(props) {
         <i className="bi bi-clock"></i>
         <p className="text-muted">{props.event.properties.eventTime}</p>
       </div>
-      <div className="d-flex gap-2 justify-content-start">
-        <div>
-          <Badge pill bg="dark">
-            {props.event.properties.atendees.map((atendee, i) => i + 1)}
-          </Badge>
+      <div className="d-flex  justify-content-start flex-column">
+        <small className="fw-bold">Atendees</small>
+        <div className="d-flex">
+          <div>
+            <Badge pill bg="dark">
+              {props.event.properties.atendees.map((atendee, i) => i + 1)}
+            </Badge>
+          </div>
+          <p className="fw-light">
+            {props.event.properties.atendees.map((atendee) => atendee)}
+          </p>
         </div>
-        <p className="fw-light">
-          {props.event.properties.atendees.map((atendee) => atendee)}
-        </p>
       </div>
     </Card>
   );

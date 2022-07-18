@@ -1,5 +1,5 @@
 // React
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 // Firebase
 import { db } from "../firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
@@ -17,17 +17,18 @@ function EventsList() {
 
   //******USE EFFECT*/
   useEffect(() => {
-    getData();
-    getAdress();
-    // displayData(); // eslint-disable-next-line
+    // getAdress();
+    getData(); // eslint-disable-next-line
   }, []);
 
   //******LOGIC*/
   async function getData() {
     let newEvents = [];
+    let counter = 0;
     const q = query(collection(db, "events"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
+      counter = counter + 1;
       let newEvent = {
         geometry: {
           coordinates: [
@@ -50,22 +51,22 @@ function EventsList() {
         type: doc.data().type,
         id: doc.id,
       };
-
-      setEvents((prevEvents) => {
-        newEvents = [newEvent, ...prevEvents];
-        // console.log(newEvents);
-        return newEvents; //ERROR-RENDERIZA DOBLE
-      });
+      console.log(counter);
+      newEvents.push(newEvent);
     });
+
+    setEvents(newEvents);
   }
   // AQUI GET ADDRESSES
-  async function getAdress() {
-    const r = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=41.38505,2.17331&key=${geocodingKey}`
-    );
-    const d = await r.json();
-    const addreses = d.formatted_address;
-  }
+  // async function getAdress() {
+  //   const r = await fetch(
+  //     `https://maps.googleapis.com/maps/api/geocode/json?latlng=41.38505,2.17331&key=${geocodingKey}`
+  //   );
+  //   const d = await r.json();
+  //   console.log(d);
+  //   const addreses = d.formatted_address;
+  //   console.log(addreses)
+  // }
 
   return (
     <div className="d-flex flex-column gap-2 p-2">

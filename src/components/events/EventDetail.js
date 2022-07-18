@@ -20,7 +20,7 @@ function Eventdetail() {
 
   //******USEEFFECT*/
   useEffect(() => {
-    getEvent();
+    getEvent(); // eslint-disable-next-line
   }, []);
 
   async function getEvent() {
@@ -37,7 +37,7 @@ function Eventdetail() {
       console.log(error);
     }
   }
-  console.log(event);
+
   return (
     <Container>
       {Object.keys(event).length === 0 ? (

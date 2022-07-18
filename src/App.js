@@ -63,20 +63,21 @@ export default App;
 // funcionalidades
 // Protected routes agrega una ruta. User debería tomar /profile cuando está logueado
 // FormCreateEvent:Atendees tiene que tomar current email, ir a db, buscar email, y traer user.fName
-// MapContainer: erase markers(sólo uno se borra) HECHO!!!
+// MapContainer: erase markers(sólo uno se borra)      ( HECHO!!!! )
 // MapContainer:Markers creation, convert locations to addresess and send it to gral context.
-// MapContainer: Remove Map controls.
+// MapContainer: Remove Map controls.                ( HECHO!!!! )
 // Login: gestionar mensaje de error para alert
 // Login: gestionar la carga del usuario cuando está leyendo el contexto por un loading y set time out
 // Today(pages): debe tomar ubicación de cliente,y mapear db con docs con eventDate de hoy cerca de sus coordenadas
 // Today(pages):a cada evento recibido de db, le debe agregar fetch a openWeather con current weather
-// Today(pages):useParams para abrir evento id
+// Today(pages):useParams para abrir evento id        ( HECHO!!!! )
 // Today(pages): en detail de evento(id) cargar windy
+// Today(pages): en detail de evento(id) cargar googlemaps
 //
 
 // ui
 // Drag n drom drawer over map
-// MapContainer: Form over should be over
+// MapContainer: Form over should be over postiion absolute
 //CreateEvent/FormCreateEvent: Loader spiner está en el más y no en un div
 // Menu: fixed bottom
 // Menu: Remove lines
