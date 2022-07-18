@@ -16,7 +16,7 @@ function EventItem(props) {
         <i className="bi bi-clock"></i>
         <p className="text-muted">{props.event.properties.eventTime}</p>
       </div>
-      <div className="d-flex gap-2">
+      <div className="d-flex gap-2 justify-content-start">
         <div>
           <Badge pill bg="dark">
             {props.event.properties.atendees.map((atendee, i) => i + 1)}

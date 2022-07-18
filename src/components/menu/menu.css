@@ -1,6 +1,12 @@
 
-
-/* .menu--container{
+.nav-fill .nav-item .nav-link{
+        margin-bottom: -1px;
+    background-color: white ;
+    border: none;
+    border-top-left-radius: none;
+   border-top-right-radius:none;
+}
+ /* .menu--container{
     border: none;
 }
 .menu--link{
@@ -8,4 +14,4 @@
 }
 .menu--link:active{
     border: none !important;
-} */
+}  */

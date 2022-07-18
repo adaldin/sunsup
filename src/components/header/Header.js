@@ -25,7 +25,7 @@ function Header() {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-              Offcanvas
+              Sun Sup People
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
@@ -40,15 +40,6 @@ function Header() {
                 Profile
               </Nav.Link>
             </Nav>
-            <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
