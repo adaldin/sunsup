@@ -73,13 +73,14 @@ export default App;
 // Today(pages):useParams para abrir evento id        ( HECHO!!!! )
 // Today(pages): en detail de evento(id) cargar windy
 // Today(pages): en detail de evento(id) cargar googlemaps
-//
+// EventDetail: cargar google maps y windy
 
 // ui
 // Drag n drom drawer over map
 // MapContainer: Form over should be over postiion absolute
-//CreateEvent/FormCreateEvent: Loader spiner está en el más y no en un div
+// CreateEvent/FormCreateEvent: Loader spiner está en el más y no en un div
 // Menu: fixed bottom
 // Menu: Remove lines
 // Header:remove Search input
 // menu: links color
+// EventDetail: margin-bottom

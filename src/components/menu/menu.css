@@ -1,6 +1,6 @@
 
 .nav-fill .nav-item .nav-link{
-        margin-bottom: -1px;
+    margin-bottom: -1px;
     background-color: white ;
     border: none;
     border-top-left-radius: none !important;
@@ -22,15 +22,6 @@
 }
 .nav-tabs .nav-link.active {
     color: #495057;
-    background-color: #fff;
     border-color:none !important;
 }
- /* .menu--container{
-    border: none;
-}
-.menu--link{
-    border: none ;
-}
-.menu--link:active{
-    border: none !important;
-}  */
+

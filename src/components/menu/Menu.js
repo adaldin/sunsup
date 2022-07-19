@@ -8,9 +8,9 @@ function Menu() {
       fill
       variant="tabs"
       defaultActiveKey="/"
-      className="menu--container fixed-bottom"
+      className="menu--container fixed-bottom bg-light"
     >
-      <Nav.Item>
+      <Nav.Item className="menu--item ">
         <Nav.Link
           as={Link}
           to="/"
@@ -38,7 +38,7 @@ function Menu() {
           as={Link}
           to="/profile"
           eventKey="profile"
-          className="menu--link d-flex flex-column text-dark"
+          className="menu--link d-flex flex-column text-dark menu--link"
         >
           <i className="bi bi-person-circle text-primary"></i>
           <small className="m-0">Profile</small>

@@ -39,7 +39,7 @@ function Eventdetail() {
   }
 
   return (
-    <Container>
+    <Container className="mb-5">
       {Object.keys(event).length === 0 ? (
         <Spinner />
       ) : (
@@ -103,6 +103,7 @@ function Eventdetail() {
           <Col xs={12} className="border p-5">
             AQUI MAPA WINDY AMB LOCATION D'EVENT
           </Col>
+          <Col className="mb-5">{event.properties.eventDescription}</Col>
         </Row>
       )}
     </Container>

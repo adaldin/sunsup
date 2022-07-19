@@ -24,11 +24,9 @@ function EventsList() {
   //******LOGIC*/
   async function getData() {
     let newEvents = [];
-    let counter = 0;
     const q = query(collection(db, "events"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      counter = counter + 1;
       let newEvent = {
         geometry: {
           coordinates: [
@@ -51,7 +49,6 @@ function EventsList() {
         type: doc.data().type,
         id: doc.id,
       };
-      console.log(counter);
       newEvents.push(newEvent);
     });
 
