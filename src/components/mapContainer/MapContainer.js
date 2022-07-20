@@ -6,7 +6,7 @@ import { GoogleMap, MarkerF } from "@react-google-maps/api";
 // Context
 import LocationContext from "../../context/locationContext";
 
-function MapContainer(props) {
+function MapContainer() {
   //******CONTEXT*/
   const { locations, setLocations } = useContext(LocationContext);
   //******STATES*/
@@ -68,7 +68,6 @@ function MapContainer(props) {
       return newLocation;
     });
   }
-
   return (
     <GoogleMap
       zoom={13}

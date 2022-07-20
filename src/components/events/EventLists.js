@@ -17,9 +17,9 @@ function EventsList() {
 
   //******USE EFFECT*/
   useEffect(() => {
-    // getAdress();
     getData(); // eslint-disable-next-line
   }, []);
+  // getAdress();
 
   //******LOGIC*/
   async function getData() {
@@ -29,15 +29,16 @@ function EventsList() {
     querySnapshot.forEach((doc) => {
       let newEvent = {
         geometry: {
-          coordinates: [
-            [
-              doc.data().geometry.coordinates[0][0],
-              doc.data().geometry.coordinates[0][1],
-            ][
-              (doc.data().geometry.coordinates[1][0],
-              doc.data().geometry.coordinates[0][1])
+          coordinates: {
+            entry: [
+              doc.data().geometry.coordinates.entry[0],
+              doc.data().geometry.coordinates.entry[1],
             ],
-          ],
+            exit: [
+              doc.data().geometry.coordinates.exit[0],
+              doc.data().geometry.coordinates.exit[1],
+            ],
+          },
           type: doc.data().geometry.type,
         },
         properties: {
@@ -51,7 +52,6 @@ function EventsList() {
       };
       newEvents.push(newEvent);
     });
-
     setEvents(newEvents);
   }
   // AQUI GET ADDRESSES
@@ -61,8 +61,8 @@ function EventsList() {
   //   );
   //   const d = await r.json();
   //   console.log(d);
-  //   const addreses = d.formatted_address;
-  //   console.log(addreses)
+  //   const addreses = d.results[4].formatted_address;
+  //   console.log(addreses);
   // }
 
   return (

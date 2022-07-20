@@ -8,10 +8,11 @@ import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
 // Context
 import { useAuth } from "../../context/authContext.js";
-
+import LocationContext from "../../context/locationContext";
 //Firestore
 import { db } from "../firebase/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import { geocodingKey } from "../../config.js";
 
 function FormCreateEvent() {
   //******STATES*/
@@ -24,8 +25,14 @@ function FormCreateEvent() {
     eventDescription: "",
     atendees: [],
   });
+  const [enterExitPoints, setEnterExitPoints] = useState({
+    sPoint: "",
+    ePoint: "",
+  });
   //******CONTEXT*/
   const { user } = useAuth();
+  const { locations } = useContext(LocationContext);
+
   // aquí traer locations/sPoint ePoint context
 
   //******USEEFFECT*/
@@ -44,7 +51,7 @@ function FormCreateEvent() {
     });
   }
 
-  function handleFormData(e) {
+  async function handleFormData(e) {
     const { name, value } = e.target;
     const atendees = [user.email];
 
@@ -57,19 +64,60 @@ function FormCreateEvent() {
     });
   }
 
-  function handleEventCreation() {
-    console.log("crear evento");
-    // Aquí send to database events? o context events?
+  async function handleEventCreation(e) {
+    e.preventDefault();
+    let newAddress = getAddres();
+    let newPaddleTrip = createPaddleTrip(newAddress);
+    const docRef = await addDoc(collection(db, "events"), newPaddleTrip);
+    console.log("Document written with ID: ", docRef.id);
+  }
+  function getAddres() {
+    let locationsSearch = locations.map(async (location) => {
+      const r = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&location_type=ROOFTOP&result_type=street_address&key=${geocodingKey}`
+      );
+      const d = await r.json();
+      const addreses = d.results.filter((place) => {
+        let newplace = place.address_components.includes("types");
+        console.log(newplace);
+        return newplace;
+      });
+      return addreses;
+    });
   }
 
+  function createPaddleTrip(newAddress) {
+    let atendeesArr = [];
+    let atendees = atendeesArr.push(user.email);
+    let newPaddleTrip = {
+      geometry: {
+        coordinates: {
+          entry: [locations[0].lat, locations[0].lng],
+          exit: [locations[1].lat, locations[1].lng],
+        },
+        type: "Multipoint",
+      },
+      properties: {
+        atendees: atendees,
+        eventDate: formData.eventDate,
+        eventName: formData.eventName,
+        eventTime: formData.eventTime,
+        ePoint: `${locations[1][0] - locations[1][1]}`,
+        sPoint: `${locations[0][0] - locations[0][1]}`,
+      },
+      type: "Feature",
+      timeStamp: new Date(),
+    };
+    return newPaddleTrip;
+  }
   return (
     <>
       <Accordion>
         <Accordion.Item eventKey="1">
           <Accordion.Header>More about your trip</Accordion.Header>
           <Accordion.Body>
-            <Form
-              as={Row}
+            <Row
+              as={Form}
               onSubmit={handleEventCreation}
               className="bg-transparent px-2  justify-content-evenly"
             >
@@ -146,7 +194,7 @@ function FormCreateEvent() {
                   Save Trip
                 </Button>
               </div>
-            </Form>
+            </Row>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

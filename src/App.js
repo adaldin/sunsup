@@ -58,6 +58,7 @@ function App() {
 }
 
 export default App;
+// PADDLETRIP en vez de EVENTS
 
 // PROBLEMAS
 // funcionalidades
@@ -84,3 +85,4 @@ export default App;
 // Header:remove Search input
 // menu: links color
 // EventDetail: margin-bottom
+// Home: cargar loading si lista no está disponible
