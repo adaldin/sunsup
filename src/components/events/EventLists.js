@@ -3,8 +3,6 @@ import { useEffect, useContext } from "react";
 // Firebase
 import { db } from "../firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
-// Keys
-import { geocodingKey } from "../../config.js";
 // Componets
 import EventItem from "./EventItem";
 // Context

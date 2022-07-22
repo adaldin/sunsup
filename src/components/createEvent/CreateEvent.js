@@ -42,10 +42,7 @@ function CreateEvent() {
         </Button>
       </div>
       <Modal show={show} onHide={handleClose} className="modal--container">
-        <Modal.Header closeButton>
-          <Modal.Title>Mark entry and exit point</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="p-0">
+        <Modal.Body className="p-0 position-relative">
           <MapContainer className="map--position__container" />
           <FormCreateEvent />
         </Modal.Body>

@@ -27,7 +27,7 @@ function Header() {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link as={Link} to="/today">
+              <Nav.Link as={Link} to="/">
                 Today
               </Nav.Link>
               <Nav.Link as={Link} to="/explore">
