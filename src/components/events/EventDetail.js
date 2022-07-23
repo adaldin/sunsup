@@ -11,6 +11,7 @@ import Badge from "react-bootstrap/Badge";
 // Firestore
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import { windyMapsKey } from "../../config";
 
 function Eventdetail() {
   //******STATE*/
@@ -23,6 +24,11 @@ function Eventdetail() {
     getEvent(); // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    getWindyMap();
+  }, [event]);
+
+  //******LOGIC*/
   async function getEvent() {
     const docRef = doc(db, "events", id);
     try {
@@ -37,6 +43,7 @@ function Eventdetail() {
       console.log(error);
     }
   }
+  function getWindyMap() {}
 
   return (
     <Container className="mb-5">
@@ -78,7 +85,14 @@ function Eventdetail() {
             <small>12 valoraciones</small>
           </Col>
           <Col xs={12} className="border p-5">
-            AQUI MAPA GOOGLE MAPS
+            <div
+              id="windy"
+              style={{
+                border: "1px black solid",
+                width: "100%",
+                heigth: "500px",
+              }}
+            ></div>
           </Col>
           <Col
             xs={12}
@@ -99,11 +113,6 @@ function Eventdetail() {
           <Col xs={12} className="p-2">
             {event.properties.eventDescription}
           </Col>
-
-          <Col xs={12} className="border p-5">
-            AQUI MAPA WINDY AMB LOCATION D'EVENT
-          </Col>
-          <Col className="mb-5">{event.properties.eventDescription}</Col>
         </Row>
       )}
     </Container>
