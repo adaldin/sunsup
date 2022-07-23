@@ -1,6 +1,6 @@
 import "./formCreateEvent.css";
 // React
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 // Bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -11,13 +11,15 @@ import Accordion from "react-bootstrap/Accordion";
 import { useAuth } from "../../context/authContext.js";
 import LocationContext from "../../context/locationContext";
 //Firestore
-// import { db } from "../firebase/firebase";
-// import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
-// import { geocodingKey } from "../../config.js";
+import { db } from "../firebase/firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { geocodingKey } from "../../config.js";
 
 function FormCreateEvent() {
   //******STATES*/
   const [openForm, setOpenForm] = useState("");
+  const [locationsLoaded, setLocationsLoaded] = useState(false);
+  const [addresssData, setAddressData] = useState([]);
   const [formData, setFormData] = useState({
     eventName: "",
     sPoint: "",
@@ -27,12 +29,46 @@ function FormCreateEvent() {
     eventDescription: "",
     atendees: [],
   });
+  const [newPaddleTrip, setNewPaddleTrip] = useState({});
+  const [tripSaved, setTripSaved] = useState(false);
   //******CONTEXT*/
   const { user } = useAuth();
 
   const { locations } = useContext(LocationContext);
 
   //******USEEFFECT*/
+  useEffect(() => {
+    function checkLocations() {
+      if (locations.length === 2) {
+        setLocationsLoaded(true);
+      }
+    }
+    checkLocations();
+  }, [locations.length]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await Promise.all(
+        locations.map(
+          async (location, i) =>
+            await (
+              await fetch(
+                `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&location_type=ROOFTOP&result_type=street_address&key=${geocodingKey}`
+              )
+            ).json()
+        )
+      );
+      setAddressData(data);
+    }
+    fetchData();
+  }, [locationsLoaded]);
+
+  useEffect(() => {
+    createNewPaddleTrip();
+  }, [addresssData]);
+  useEffect(() => {
+    createNewPaddleTrip();
+  }, [formData]);
 
   //******LOGIC*/
   function handleAnimation(e) {
@@ -51,11 +87,53 @@ function FormCreateEvent() {
       };
     });
   }
-  function handleEventCreation(e) {
+
+  function createNewPaddleTrip() {
+    let atendeesArr = [];
+    atendeesArr.push(user.email);
+    let dateToday = new Date();
+    const isFormEmpty = Object.values(formData).some(
+      (x) => x === "" || x === []
+    );
+
+    if (addresssData.length > 0 && !isFormEmpty) {
+      let entryPoint =
+        addresssData[1].results[0].address_components[2].long_name;
+      let startingPoint =
+        addresssData[0].results[0].address_components[2].long_name;
+      let newPddlTrip = {
+        geometry: {
+          coordinates: {
+            entry: [locations[0].lat, locations[0].lng],
+            exit: [locations[1].lat, locations[1].lng],
+          },
+          type: "Multipoint",
+        },
+        properties: {
+          atendees: atendeesArr,
+          eventDate: formData.eventDate,
+          eventName: formData.eventName,
+          eventTime: formData.eventTime,
+          ePoint: entryPoint,
+          sPoint: startingPoint,
+          eventDescription: formData.eventDescription,
+        },
+        type: "Feature",
+        timeStamp: dateToday,
+      };
+      setNewPaddleTrip(newPddlTrip);
+    }
+  }
+
+  async function handleEventCreation(e) {
     e.preventDefault();
-    console.log("creates");
-    console.log(locations);
-    console.log(formData);
+    try {
+      const docRef = await addDoc(collection(db, "events"), newPaddleTrip);
+      console.log("Document written with ID: ", docRef.id);
+      setTripSaved(true);
+    } catch (err) {
+      console.log("Failed on writing do db: ", err);
+    }
   }
 
   return (
@@ -138,9 +216,15 @@ function FormCreateEvent() {
 
               {/* submit */}
               <div className="d-grid py-2">
-                <Button variant="secondary" type="submit">
-                  Save Trip
-                </Button>
+                {!tripSaved ? (
+                  <Button variant="secondary" type="submit">
+                    Save Trip
+                  </Button>
+                ) : (
+                  <Button variant="success" type="submit" disabled>
+                    Trip Saved!
+                  </Button>
+                )}
               </div>
             </Row>
           </Accordion.Body>
@@ -150,28 +234,3 @@ function FormCreateEvent() {
   );
 }
 export default FormCreateEvent;
-
-// let locationsSearch = locations.map((location, i) => {
-//   console.log(i);
-//   fetch(
-//     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&location_type=ROOFTOP&result_type=street_address&key=${geocodingKey}`
-//   )
-//     .then((res) => res.json())
-//     .then((data) => console.log(data));
-// });
-
-// let locationsSearch = locations.map(async (location, i) => {
-//   console.log(i);
-//   const r = await fetch(
-//     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&location_type=ROOFTOP&result_type=street_address&key=${geocodingKey}`
-//   );
-//   const d = await r.json();
-//   console.log(d);
-//   const components = d.results.find((place) => {
-//     let locality = {};
-//     locality = place.address_components.find((e) =>
-//       e.types.includes("locality" || "political")
-//     );
-//     return locality.long_name;
-//   });
-// });

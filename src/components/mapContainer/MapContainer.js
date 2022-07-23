@@ -50,6 +50,7 @@ function MapContainer() {
     if (locations.length > 0) {
       let newMarker = locations.map((location, i) => (
         <MarkerF
+          animation={4}
           position={location}
           key={i}
           onClick={(e) => handleMarker(e, i)}
@@ -68,6 +69,10 @@ function MapContainer() {
       return newLocation;
     });
   }
+  function cleanMarkers() {
+    setMarkerUI("");
+  }
+
   return (
     <GoogleMap
       zoom={13}
@@ -80,6 +85,7 @@ function MapContainer() {
       }}
       mapContainerClassName="map--size___container"
       onClick={handleClick}
+      onLoad={cleanMarkers}
     >
       {markerUI}
     </GoogleMap>

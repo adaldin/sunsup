@@ -24,10 +24,6 @@ function Eventdetail() {
     getEvent(); // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    getWindyMap();
-  }, [event]);
-
   //******LOGIC*/
   async function getEvent() {
     const docRef = doc(db, "events", id);
@@ -43,7 +39,6 @@ function Eventdetail() {
       console.log(error);
     }
   }
-  function getWindyMap() {}
 
   return (
     <Container className="mb-5">
