@@ -10,6 +10,7 @@ import Accordion from "react-bootstrap/Accordion";
 // Context
 import { useAuth } from "../../context/authContext.js";
 import LocationContext from "../../context/locationContext";
+// import EventsContext from "../../context/eventsContext";
 //Firestore
 import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -31,10 +32,11 @@ function FormCreateEvent() {
   });
   const [newPaddleTrip, setNewPaddleTrip] = useState({});
   const [tripSaved, setTripSaved] = useState(false);
+
   //******CONTEXT*/
   const { user } = useAuth();
-
   const { locations } = useContext(LocationContext);
+  // const { events, setEvents } = useContext(EventsContext);
 
   //******USEEFFECT*/
   useEffect(() => {
@@ -60,14 +62,14 @@ function FormCreateEvent() {
       );
       setAddressData(data);
     }
-    fetchData();
+    fetchData(); // eslint-disable-next-line
   }, [locationsLoaded]);
 
   useEffect(() => {
-    createNewPaddleTrip();
+    createNewPaddleTrip(); // eslint-disable-next-line
   }, [addresssData]);
   useEffect(() => {
-    createNewPaddleTrip();
+    createNewPaddleTrip(); // eslint-disable-next-line
   }, [formData]);
 
   //******LOGIC*/
@@ -127,6 +129,7 @@ function FormCreateEvent() {
 
   async function handleEventCreation(e) {
     e.preventDefault();
+
     try {
       const docRef = await addDoc(collection(db, "events"), newPaddleTrip);
       console.log("Document written with ID: ", docRef.id);

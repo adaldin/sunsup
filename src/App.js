@@ -62,27 +62,29 @@ export default App;
 
 // PROBLEMAS
 // funcionalidades
-// Protected routes agrega una ruta. User debería tomar /profile cuando está logueado
+// Protected routes agrega una ruta. User debería tomar /profile cuando está logueado                     ( HECHO!!!! )
 // FormCreateEvent:Atendees tiene que tomar current email, ir a db, buscar email, y traer user.fName
-// MapContainer: erase markers(sólo uno se borra)      ( HECHO!!!! )
-// MapContainer:Markers creation, convert locations to addresess and send it to gral context.
-// MapContainer: Remove Map controls.                ( HECHO!!!! )
+// MapContainer: erase markers(sólo uno se borra)                                                         ( HECHO!!!! )
+// MapContainer:Markers creation, convert locations to addresess and send it to gral context.             ( HECHO!!!! )
+// MapContainer: Remove Map controls.                                                                     ( HECHO!!!! )
 // Login: gestionar mensaje de error para alert
 // Login: gestionar la carga del usuario cuando está leyendo el contexto por un loading y set time out
 // Today(pages): debe tomar ubicación de cliente,y mapear db con docs con eventDate de hoy cerca de sus coordenadas
 // Today(pages):a cada evento recibido de db, le debe agregar fetch a openWeather con current weather
-// Today(pages):useParams para abrir evento id        ( HECHO!!!! )
+// Today(pages):useParams para abrir evento id                                                              ( HECHO!!!! )
 // Today(pages): en detail de evento(id) cargar windy
 // Today(pages): en detail de evento(id) cargar googlemaps
 // EventDetail: cargar google maps y windy
+//O:  EventDetail:boton de join viniendo de today que si está logueado? alert ("unido"):navigate to login
+//O:  Event item:boton erase viniendo desde profile. que borre la ruta de base de datos tmb
 
 // ui
-// Drag n drom drawer over map
-// MapContainer: Form over should be over postiion absolute
+// Drag n drom drawer over map                                        ( HECHO!!!! )
+// MapContainer: Form over should be over postiion absolute            ( HECHO!!!! )
 // CreateEvent/FormCreateEvent: Loader spiner está en el más y no en un div
-// Menu: fixed bottom
-// Menu: Remove lines
-// Header:remove Search input
-// menu: links color
-// EventDetail: margin-bottom
-// Home: cargar loading si lista no está disponible
+// Menu: fixed bottom                                                    ( HECHO!!!! )
+// Menu: Remove lines                                                      ( HECHO!!!! )
+// Header:remove Search input                                              ( HECHO!!!! )
+// menu: links color                                                         ( HECHO!!!! )
+// EventDetail: margin-bottom                                                  ( HECHO!!!! )
+// O: Home: cargar loading si lista no está disponible

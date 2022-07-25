@@ -32,7 +32,7 @@ function CreateEvent() {
 
   return (
     <>
-      <div>
+      <div className="d-flex justify-content-end my-2">
         <Button
           variant="dark"
           onClick={handleShow}
