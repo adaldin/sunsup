@@ -13,8 +13,6 @@ import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 // Components
 import Weather from "../weather/Weather";
-import { map, L } from "leaflet";
-import { windyMapsKey } from "../../config";
 
 function Eventdetail() {
   //******STATE*/
@@ -44,29 +42,6 @@ function Eventdetail() {
     }
   }
 
-  function initWindy() {
-    const options = {
-      // Required: API key
-      key: { windyMapsKey }, // REPLACE WITH YOUR KEY !!!
-
-      // Put additional console output
-      verbose: true,
-
-      // Optional: Initial state of the map
-      lat: 50.4,
-      lon: 14.3,
-      zoom: 5,
-    };
-    // Initialize Windy API
-    // windyAPI is ready, and contain 'map', 'store',
-    // 'picker' and other usefull stuff
-
-    // .map is instance of Leaflet map
-    const newMap = L.map("map").setView([50.4, 14.3], 13);
-    // const newMap = new Map();
-    // L.popup().setLatLng([50.4, 14.3]).openOn(map);
-    L.marker([50.4, 14.3]).addTo(newMap).openPopup();
-  }
   return (
     <Container className="mb-5">
       {Object.keys(event).length === 0 ? (
