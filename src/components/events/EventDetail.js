@@ -1,5 +1,5 @@
 // React
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // Bootstrap
 import Container from "react-bootstrap/Container";
@@ -11,16 +11,12 @@ import Badge from "react-bootstrap/Badge";
 // Firestore
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
-import { windyMapsKey } from "../../config";
-import LocationContext from "../../context/locationContext";
-// import * as L from "leaflet";
+// Components
+import Weather from "../weather/Weather";
 
 function Eventdetail() {
   //******STATE*/
   const [event, setEvent] = useState({});
-  // const [locationsLoaded, setLocationsLoaded] = useState(false);
-  //******CONTEXT*/
-  // const { locations } = useContext(LocationContext);
 
   //******PARAMS*/
   const { id } = useParams();
@@ -70,7 +66,6 @@ function Eventdetail() {
   //     L.popup().setLatLng([50.4, 14.3]).setContent("Hello World").openOn(map);
   //   });
   // }
-
   return (
     <Container className="mb-5">
       {Object.keys(event).length === 0 ? (
@@ -78,10 +73,13 @@ function Eventdetail() {
       ) : (
         <Row>
           <Col xs={12}>
-            <small className="text-muted">
-              <i className="bi bi-geo-alt-fill"></i> {event.properties.sPoint} →{" "}
-              {event.properties.ePoint} | OpenWeatherFetch
-            </small>
+            <div className="text-secondary d-flex align-items-baseline gap-2">
+              <i className="bi bi-geo-alt-fill"></i>{" "}
+              <small>
+                {event.properties.sPoint} → {event.properties.ePoint}
+              </small>
+              <Weather coordinates={event.geometry.coordinates.entry} />
+            </div>
           </Col>
           <Col xs={12}>
             <h3>{event.properties.eventName}</h3>
@@ -111,14 +109,14 @@ function Eventdetail() {
             <small>12 valoraciones</small>
           </Col>
           <Col xs={12} className="border p-5">
-            <div
+            {/* <div
               id="windy"
               style={{
                 border: "1px black solid",
                 width: "100%",
                 heigth: "500px",
               }}
-            ></div>
+            ></div> */}
           </Col>
           <Col
             xs={12}

@@ -75,10 +75,11 @@ export default App;
 // Today(pages): en detail de evento(id) cargar windy
 // Today(pages): en detail de evento(id) cargar googlemaps
 // EventDetail: cargar google maps y windy
-// UserProfile: refresh page after creation
-// UserProfile: Sort list by last created.
 //O:  EventDetail:boton de join viniendo de today que si está logueado? alert ("unido"):navigate to login
+// UserProfile: refresh page after creatin
+// UserProfile: Sort list by last created.
 //O:  Event item:boton erase viniendo desde profile. que borre la ruta de base de datos tmb
+// Event Item: Locacion en tarjeta
 
 // ui
 // Drag n drom drawer over map                                        ( HECHO!!!! )
