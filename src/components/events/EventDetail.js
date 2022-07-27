@@ -13,6 +13,8 @@ import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 // Components
 import Weather from "../weather/Weather";
+import { map, L } from "leaflet";
+import { windyMapsKey } from "../../config";
 
 function Eventdetail() {
   //******STATE*/
@@ -42,30 +44,29 @@ function Eventdetail() {
     }
   }
 
-  // function initWindy() {
-  //   const options = {
-  //     // Required: API key
-  //     key: { windyMapsKey }, // REPLACE WITH YOUR KEY !!!
+  function initWindy() {
+    const options = {
+      // Required: API key
+      key: { windyMapsKey }, // REPLACE WITH YOUR KEY !!!
 
-  //     // Put additional console output
-  //     verbose: true,
+      // Put additional console output
+      verbose: true,
 
-  //     // Optional: Initial state of the map
-  //     lat: 50.4,
-  //     lon: 14.3,
-  //     zoom: 5,
-  //   };
-  //   // Initialize Windy API
-  //   windyInit(options, (windyAPI) => {
-  //     // windyAPI is ready, and contain 'map', 'store',
-  //     // 'picker' and other usefull stuff
+      // Optional: Initial state of the map
+      lat: 50.4,
+      lon: 14.3,
+      zoom: 5,
+    };
+    // Initialize Windy API
+    // windyAPI is ready, and contain 'map', 'store',
+    // 'picker' and other usefull stuff
 
-  //     const { map } = windyAPI;
-  //     // .map is instance of Leaflet map
-
-  //     L.popup().setLatLng([50.4, 14.3]).setContent("Hello World").openOn(map);
-  //   });
-  // }
+    // .map is instance of Leaflet map
+    const newMap = L.map("map").setView([50.4, 14.3], 13);
+    // const newMap = new Map();
+    // L.popup().setLatLng([50.4, 14.3]).openOn(map);
+    L.marker([50.4, 14.3]).addTo(newMap).openPopup();
+  }
   return (
     <Container className="mb-5">
       {Object.keys(event).length === 0 ? (
@@ -109,14 +110,13 @@ function Eventdetail() {
             <small>12 valoraciones</small>
           </Col>
           <Col xs={12} className="border p-5">
-            {/* <div
+            <div
               id="windy"
               style={{
-                border: "1px black solid",
                 width: "100%",
-                heigth: "500px",
+                heigth: "900px",
               }}
-            ></div> */}
+            ></div>
           </Col>
           <Col
             xs={12}

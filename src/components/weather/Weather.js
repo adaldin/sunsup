@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { openWeatherKey } from "../../config";
+import Spinner from "react-bootstrap/Spinner";
 
 function Weather(props) {
   //******STATES*/
@@ -16,7 +17,6 @@ function Weather(props) {
           `https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${openWeatherKey}&units=metric&lang=es`
         );
         const DATA = await RESPONSE.json();
-        console.log(DATA);
         setCurrentWeather(DATA);
         setLoadedWeather(true);
       } catch (err) {
@@ -24,7 +24,7 @@ function Weather(props) {
       }
     }
     getWeather();
-  }, []);
+  }, [props.coordinates]);
 
   return (
     <>
@@ -37,7 +37,7 @@ function Weather(props) {
           />
         </div>
       ) : (
-        ""
+        <Spinner animation="border" />
       )}
     </>
   );

@@ -2,7 +2,7 @@
 import { useEffect, useContext, useState } from "react";
 // Firebase
 import { db } from "../firebase/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 // Componets
 import EventItem from "./EventItem";
 // Context

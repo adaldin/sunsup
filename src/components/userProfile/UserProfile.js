@@ -92,7 +92,9 @@ function UserProfile() {
   }
 
   function getSingleTrip() {
-    events.map((e) => setEvent(e));
+    events.map((e) => {
+      return setEvent(e);
+    });
   }
 
   return (
