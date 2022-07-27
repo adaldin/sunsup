@@ -84,7 +84,7 @@ function UserProfile() {
   }
 
   function getUserTrips() {
-    const userTrips = events.filter((event, i) =>
+    const userTrips = events.filter((event) =>
       event.properties.atendees.includes(user.email)
     );
     setUserTrips(userTrips);
@@ -92,7 +92,7 @@ function UserProfile() {
   }
 
   function getSingleTrip() {
-    events.map((e) => {
+    events.forEach((e) => {
       return setEvent(e);
     });
   }
