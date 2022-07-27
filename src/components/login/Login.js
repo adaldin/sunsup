@@ -15,7 +15,7 @@ function Login() {
     fName: "",
     lName: "",
   });
-  const [error, setError] = useState("");
+  const [loginError, setLoginError] = useState("");
 
   //******CONTEXT*/
   const { login } = useAuth();
@@ -31,19 +31,19 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError("");
+    setLoginError("");
     try {
       await login(user.email, user.password);
       navigate("/profile/user");
     } catch (error) {
       console.log(error.message);
-      setError("Correo inválido");
+      setLoginError("Correo inválido");
     }
   };
 
   return (
     <div>
-      {error && <Alert variant="danger">{error}</Alert>}
+      {loginError && <Alert variant="danger">{loginError}</Alert>}
       <form onSubmit={handleSubmit} className="d-flex flex-column p-2 gap-2">
         {/* email */}
         <label htmlFor="email">Email</label>

@@ -51,7 +51,7 @@ function FormCreateEvent() {
     async function fetchData() {
       const data = await Promise.all(
         locations.map(
-          async (location, i) =>
+          async (location) =>
             await (
               await fetch(
                 `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&location_type=ROOFTOP&result_type=street_address&key=${geocodingKey}`
@@ -72,7 +72,7 @@ function FormCreateEvent() {
   }, [formData]);
 
   //******LOGIC*/
-  function handleAnimation(e) {
+  function handleAnimation() {
     setOpenForm("drawer");
   }
 
