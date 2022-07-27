@@ -10,7 +10,7 @@ import Accordion from "react-bootstrap/Accordion";
 // Context
 import { useAuth } from "../../context/authContext.js";
 import LocationContext from "../../context/locationContext";
-// import EventsContext from "../../context/eventsContext";
+
 //Firestore
 import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -36,7 +36,6 @@ function FormCreateEvent() {
   //******CONTEXT*/
   const { user } = useAuth();
   const { locations } = useContext(LocationContext);
-  // const { events, setEvents } = useContext(EventsContext);
 
   //******USEEFFECT*/
   useEffect(() => {
