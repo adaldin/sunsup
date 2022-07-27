@@ -101,7 +101,7 @@ function Eventdetail() {
             <div className="d-flex gap-2">
               <div>
                 <Badge pill bg="dark">
-                  {event.properties.atendees.map((atendee, i) => i + 1)}
+                  {event.properties.atendees.map((_atendee, i) => i + 1)}
                 </Badge>
               </div>
               <p className="fw-light">

@@ -61,10 +61,10 @@ function EventsList() {
 
   function displayTodayTrips() {
     let dateToday = new Date().toISOString().split("T")[0];
-    let filteredTrips = events.filter(
+    let filtererTrips = events.filter(
       (trip) => trip.properties.eventDate === dateToday
     );
-    setFilteredTrips(filteredTrips);
+    setFilteredTrips(filtererTrips);
   }
 
   return (

@@ -21,7 +21,7 @@ function EventItem(props) {
         <div className="d-flex">
           <div>
             <Badge pill bg="dark">
-              {props.event.properties.atendees.map((atendee, i) => i + 1)}
+              {props.event.properties.atendees.map((_atendee, i) => i + 1)}
             </Badge>
           </div>
           <p className="fw-light">
