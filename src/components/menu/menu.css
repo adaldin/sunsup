@@ -1,14 +1,7 @@
 
 .nav-fill .nav-item .nav-link{
     margin-bottom: -1px;
-    background-color: white ;
-    border: none;
-    border-top-left-radius: none !important;
-   border-top-right-radius:none !important;
-}
-.nav-fill .nav-item .nav-link{
-    margin-bottom: -1px;
-    background: 0 0;
+    background:white;
     border: none !important;
     border-top-left-radius: none !important;
     border-top-right-radius:none !important;

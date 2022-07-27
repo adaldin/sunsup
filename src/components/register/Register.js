@@ -1,7 +1,6 @@
 // React
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 // Bootstrap
 import Button from "react-bootstrap/Button";
 import { Alert } from "react-bootstrap";
@@ -21,7 +20,7 @@ function Register() {
     fName: "",
     lName: "",
   });
-  const [error, setError] = useState("");
+  const [registerError, setRegisterError] = useState("");
 
   //******CONTEXT*/
   // import contexto(fc signup para modificar)
@@ -38,7 +37,7 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError("");
+    setRegisterError("");
     try {
       await signUp(user.email, user.password);
       navigate("/");
@@ -57,13 +56,13 @@ function Register() {
         error.code === "auth/email-already-in-use" ||
         error.code === "auth/internal-error"
       )
-        setError("Correo inválido");
+        setRegisterError("Correo inválido");
     }
   };
 
   return (
     <div>
-      {error && <Alert variant="danger">{error}</Alert>}
+      {registerError && <Alert variant="danger">{registerError}</Alert>}
       <form onSubmit={handleSubmit} className="d-flex flex-column p-2 gap-2">
         {/* email */}
         <label htmlFor="email">Email</label>

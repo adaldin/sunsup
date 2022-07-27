@@ -62,7 +62,7 @@ function MapContainer() {
     }
   }
 
-  function handleMarker(e, i) {
+  function handleMarker(_e, i) {
     setLocations((prevLocation) => {
       let newLocation = [...prevLocation];
       newLocation.splice(i, 1);
