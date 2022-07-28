@@ -13,6 +13,9 @@ import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 // Components
 import Weather from "../weather/Weather";
+import MapContainer from "../mapContainer/MapContainer";
+import { mapKey } from "../../config";
+import { useJsApiLoader } from "@react-google-maps/api";
 
 function Eventdetail() {
   //******STATE*/
@@ -42,8 +45,16 @@ function Eventdetail() {
     }
   }
 
-  function handleFeature(event) {
-    console.log("Feature Coming Soon");
+  function handleFeature() {
+    console.log("Feature Coming Soon!");
+  }
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: mapKey,
+    libraries: ["places"],
+  });
+  if (!isLoaded) {
+    return <Spinner animation="border" />;
   }
 
   return (
@@ -96,14 +107,8 @@ function Eventdetail() {
           <Col xs={12} lg={2}>
             <small>12 valoraciones</small>
           </Col>
-          <Col xs={12} className="border p-5">
-            <div
-              id="windy"
-              style={{
-                width: "100%",
-                heigth: "900px",
-              }}
-            ></div>
+          <Col xs={12} className="p-0">
+            <MapContainer coordinates={event.geometry.coordinates} />
           </Col>
           <Col
             xs={12}
