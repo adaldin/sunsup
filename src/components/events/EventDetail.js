@@ -42,6 +42,10 @@ function Eventdetail() {
     }
   }
 
+  function handleFeature(event) {
+    console.log("Feature Coming Soon");
+  }
+
   return (
     <Container className="mb-5">
       {Object.keys(event).length === 0 ? (
@@ -66,7 +70,11 @@ function Eventdetail() {
             className="d-flex p-2 gap-1 justify-content-between"
           >
             <div className="d-flex">
-              <Button variant="outline-dark" className="btn-sm">
+              <Button
+                variant="outline-dark"
+                className="btn-sm"
+                onClick={handleFeature}
+              >
                 <i className="bi bi-hand-thumbs-up"></i> Valora
               </Button>
             </div>
@@ -76,7 +84,11 @@ function Eventdetail() {
               </Button>
             </div>
             <div className="d-flex">
-              <Button variant="outline-dark" className="btn-sm">
+              <Button
+                variant="outline-dark"
+                className="btn-sm"
+                onClick={handleFeature}
+              >
                 <i className="bi bi-share"></i> Comparte
               </Button>
             </div>

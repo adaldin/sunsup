@@ -62,6 +62,7 @@ export default App;
 
 // PROBLEMAS
 // funcionalidades
+// Rutas llevarlo file fuera
 // Protected routes agrega una ruta. User debería tomar /profile cuando está logueado                     ( HECHO!!!! )
 // FormCreateEvent:Atendees tiene que tomar current email, ir a db, buscar email, y traer user.fName
 // MapContainer: erase markers(sólo uno se borra)                                                         ( HECHO!!!! )
