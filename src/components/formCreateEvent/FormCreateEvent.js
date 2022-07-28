@@ -128,11 +128,11 @@ function FormCreateEvent() {
 
   async function handleEventCreation(e) {
     e.preventDefault();
-
     try {
       const docRef = await addDoc(collection(db, "events"), newPaddleTrip);
       console.log("Document written with ID: ", docRef.id);
       setTripSaved(true);
+      window.location.reload(true);
     } catch (err) {
       console.log("Failed on writing do db: ", err);
     }
